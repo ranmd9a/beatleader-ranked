@@ -31,6 +31,7 @@ jobs:
     - run: |
        node dist/get_beatleader_ranked.js
        node dist/create_playlist.js
+       (cd result && zip beatleader_rank_all.zip *.json)
        # tag_name=`date '+%Y%m%d%H%M'`
        echo "TAG_NAME=`date '+%Y%m%d%H%M'`" >> $GITHUB_ENV
     - name: Create release
@@ -50,7 +51,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./result/*.json
+        asset_path: ./result/beatleader_rank_all.zip
         asset_name: playlists
-        asset_content_type: application/json
+        asset_content_type: application/zip
 
