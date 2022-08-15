@@ -12,8 +12,8 @@ async function sleep(time: number): Promise<void> {
 }
 
 async function getLeaderboard() {
-	// let page = 1;
-	let page = 290;
+	let page = 1;
+	// let page = 290;
 	const maps = new Map<string, IBeatLeaderMap>();
 
 	let lastRecord = false;
