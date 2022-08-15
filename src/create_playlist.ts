@@ -7,6 +7,8 @@ import { IBeatLeaderMap } from './Models/BeatLeaderModels';
 // 星別プレイリストを作成する。
 // -----------------------------------------------------------------------------
 
+const baseSyncUrl = `https://github.com/ranmd9a/beatleader-ranked/releases/download/latest`;
+
 async function sleep(time: number): Promise<void> {
 	return new Promise(resolve => setTimeout(resolve, time))
 }
@@ -35,6 +37,9 @@ function createPlaylist(title: string, songData: any[], description?: string, im
 		template.image = `data:image/png;base64,${data}`;
 	}
 	const playlistName = `beatleader_${title.toLowerCase().replace(/-/g, '_')}.json`;
+	template.customData = {
+		syncURL: `${baseSyncUrl}/${playlistName}`,
+	};
 	Fs.writeJSONSync(`result/${playlistName}`, template, { spaces: '\t' });
 	console.log(playlistName);
 }
