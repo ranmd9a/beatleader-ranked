@@ -89,7 +89,7 @@ async function main() {
 	for (const entry of songMapMap) {
 		const key = entry[0];
 		const keyText = `0${key}`.slice(-2);
-		createPlaylist(`Rank${keyText}`, mapToArray(entry[1]), `star ${key}`, `6338_300x300-${key}.png`);
+		createPlaylist(`Ranked_${keyText}`, mapToArray(entry[1]), `star ${key}`, `6338_300x300-${key}.png`);
 		await sleep(1000);
 	}
 }
