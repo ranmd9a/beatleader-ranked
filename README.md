@@ -12,6 +12,6 @@ All / 全部
 
 individuals / 個別
 
-Go to [Release](https://github.com/ranmd9a/beatleader-ranked/releases/download/latest) page.
+Go to [Release](https://github.com/ranmd9a/beatleader-ranked/releases/latest) page.
 
 
