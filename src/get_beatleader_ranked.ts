@@ -52,7 +52,7 @@ async function getLeaderboard() {
 			maps.set(song.id, song);
 		}
 		page++;
-		await sleep(500 + Math.random() * 500);
+		await sleep(1000 + Math.random() * 500);
 	}
 	return maps;
 }
