@@ -19,7 +19,7 @@ async function getLeaderboard() {
 	let lastRecord = false;
 	while (!lastRecord) {
 
-		// ranked=1 で絞り込んでいるので Unranked は出てこない。
+		// ranked で絞り込んでいるので Unranked は出てこない。
 		const options = {
 			url: `https://api.beatleader.xyz/leaderboards?page=${page}&type=ranked&stars_from=0&stars_to=15&sortBy=stars`,
 			// method: 'GET',
@@ -32,17 +32,19 @@ async function getLeaderboard() {
 			throw new Error(res.statusText);
 		}
 
-		const body = res.data as {data: IBeatLeaderMap[], metadata: IMetadata};
+		const body = res.data as { data: IBeatLeaderMap[], metadata: IMetadata };
 		console.log(`total: ${body.metadata?.total}, page: ${body.metadata?.page}, itemsPerPage: ${body.metadata?.itemsPerPage}`);
 
-        const songs = body.data;
+		const songs = body.data;
 		if (songs == null || songs.length === 0) {
 			break;
 		}
 
 		for (const song of songs) {
 			if (!song.difficulty.ranked) {
-				continue;
+				// ranked が false でも Ranked 表示されているものがあるので警告メッセージだけ表示
+				console.warn(`difficulty.ranked = false : ${song.song.id}: ${song.song.name}`);
+				// continue;
 			}
 			if (maps.has(song.song.id)) {
 				console.error(`Duplicate id: ${song.song.id}: ${song.song.name}`);
@@ -85,9 +87,9 @@ async function doMain(): Promise<void> {
 	console.log(`map数：${allSongList.length}`);
 
 	// const mom: moment.Moment = moment();
-    if (!Fs.existsSync("tmp")) {
-        Fs.mkdirSync("tmp");
-    }
+	if (!Fs.existsSync("tmp")) {
+		Fs.mkdirSync("tmp");
+	}
 	Fs.writeFileSync(`tmp/AllSongs_tmp.json`,
 		JSON.stringify(allSongList, null, 2), 'utf-8');
 }
