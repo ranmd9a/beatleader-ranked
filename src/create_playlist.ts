@@ -41,7 +41,7 @@ function createPlaylist(title: string, songData: any[], description?: string, im
 		syncURL: `${baseSyncUrl}/${playlistName}`,
 	};
 	Fs.writeJSONSync(`result/${playlistName}`, template, { spaces: '\t' });
-	console.log(playlistName);
+	console.log(`${playlistName}: ${songData.length}maps`);
 }
 
 function addToMap(songMap: Map<string, any>, song: IBeatLeaderMap) {
