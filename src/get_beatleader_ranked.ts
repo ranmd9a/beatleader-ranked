@@ -13,7 +13,6 @@ async function sleep(time: number): Promise<void> {
 
 async function getLeaderboard() {
 	let page = 1;
-	// let page = 290;
 	const maps = new Map<string, IBeatLeaderMap>();
 
 	let lastRecord = false;
@@ -21,7 +20,7 @@ async function getLeaderboard() {
 
 		// ranked で絞り込んでいるので Unranked は出てこない。
 		const options = {
-			url: `https://api.beatleader.xyz/leaderboards?page=${page}&type=ranked&stars_from=0&stars_to=15&sortBy=stars`,
+			url: `https://api.beatleader.xyz/leaderboards?page=${page}&type=ranked&stars_from=0&stars_to=16&sortBy=stars&count=100`,
 			// method: 'GET',
 			// json: true,
 			timeout: 5000,
